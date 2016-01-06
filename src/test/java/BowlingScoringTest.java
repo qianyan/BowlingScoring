@@ -44,4 +44,12 @@ public class BowlingScoringTest {
 
         assertThat(finalScore, is(300));
     }
+
+    @Test
+    public void should_score_279_pins_when_the_first_nine_frames_are_strike_but_the_tenth_is_spare() throws Exception {
+
+        int finalScore = bowlingScoring.calculate("10 10 10 10 10 10 10 10 10 9 1 10");
+
+        assertThat(finalScore, is(279));
+    }
 }

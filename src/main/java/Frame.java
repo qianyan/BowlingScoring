@@ -27,12 +27,12 @@ public class Frame {
     public int finalScore() {
         final int basicScore = firstRoll + secondRoll;
 
-        if (next == null) {
-            return basicScore;
-        }
-
         if (number > TEN_FRAMES) {
             return 0;
+        }
+
+        if (next == null) {
+            return basicScore;
         }
 
         if (isSpare()) {
