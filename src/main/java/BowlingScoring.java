@@ -5,6 +5,9 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 public class BowlingScoring {
+
+    private static final int STRIKE_SCORE = 10;
+
     public int calculate(String inputScores) {
         return constructLinkedFrames(inputScores).finalScore();
     }
@@ -17,10 +20,10 @@ public class BowlingScoring {
         Frame head = new Frame();
         Frame h = head;
         for (Iterator<Integer> it = scores.iterator(); it.hasNext(); ) {
-            Integer next = it.next();
-            Frame frame = new Frame(next);
+            Integer score = it.next();
+            Frame frame = new Frame(score);
 
-            if (next != 10 && it.hasNext()) {
+            if (score != STRIKE_SCORE && it.hasNext()) {
                 frame.setSecondRoll(it.next());
             }
 
