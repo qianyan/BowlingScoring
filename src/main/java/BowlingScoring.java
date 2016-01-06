@@ -6,7 +6,13 @@ import static java.util.stream.Collectors.toList;
 
 public class BowlingScoring {
     public int calculate(String inputScores) {
-        List<Integer> scores = Stream.of(inputScores.split(" ")).map(Integer::parseInt).collect(toList());
+        return constructLinkedFrames(inputScores).finalScore();
+    }
+
+    private Frame constructLinkedFrames(String inputScores) {
+        List<Integer> scores = Stream.of(inputScores.split(" "))
+                .map(Integer::parseInt)
+                .collect(toList());
 
         Frame head = new Frame();
         Frame h = head;
@@ -19,7 +25,6 @@ public class BowlingScoring {
             head.next(frame);
             head = frame;
         }
-
-        return h.finalScore();
+        return h;
     }
 }
