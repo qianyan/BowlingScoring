@@ -1,4 +1,6 @@
 public class Frame {
+    private static final int STRIKE_SCORE = 10;
+    private static final int TEN_FRAMES = 10;
     private final int number;
     private final Integer firstRoll;
     private Integer secondRoll;
@@ -23,42 +25,40 @@ public class Frame {
     }
 
     public int finalScore() {
+        final int basicScore = firstRoll + secondRoll;
+
         if (next == null) {
-            return firstRoll + secondRoll;
+            return basicScore;
         }
 
-        if(number > 10) {
+        if (number > TEN_FRAMES) {
             return 0;
         }
 
         if (isSpare()) {
-            return firstRoll + secondRoll + next.firstRoll + next.finalScore();
+            return basicScore + next.firstRoll + next.finalScore();
         }
 
         if (isStrike()) {
-            return firstRoll + next.firstRoll + secondBallRoll() + next.finalScore();
+            return basicScore + next.firstRoll + secondBallRoll() + next.finalScore();
         }
 
-        return firstRoll + secondRoll + next.finalScore();
+        return basicScore + next.finalScore();
     }
 
     private Integer secondBallRoll() {
-        if(!next.isStrike()) {
+        if (!next.isStrike()) {
             return next.secondRoll;
         }
 
-        if (next.next != null) {
-            return next.next.firstRoll;
-        }
-
-        return next.secondRoll;
+        return next.next.firstRoll;
     }
 
     private boolean isStrike() {
-        return firstRoll == 10;
+        return firstRoll == STRIKE_SCORE;
     }
 
     private boolean isSpare() {
-        return !isStrike() && firstRoll + secondRoll == 10;
+        return !isStrike() && firstRoll + secondRoll == STRIKE_SCORE;
     }
 }
