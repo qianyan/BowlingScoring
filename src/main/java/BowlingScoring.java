@@ -9,14 +9,13 @@ public class BowlingScoring {
     private static final int STRIKE_SCORE = 10;
 
     public int calculate(String inputScores) {
-        return constructLinkedFrames(inputScores).finalScore();
-    }
-
-    private Frame constructLinkedFrames(String inputScores) {
         List<Integer> scores = Stream.of(inputScores.split(" "))
                 .map(Integer::parseInt)
                 .collect(toList());
+        return constructLinkedFrames(scores).finalScore();
+    }
 
+    private Frame constructLinkedFrames(List<Integer> scores) {
         Frame head = new Frame();
         Frame h = head;
         for (Iterator<Integer> it = scores.iterator(); it.hasNext(); ) {
