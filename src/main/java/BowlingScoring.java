@@ -16,11 +16,12 @@ public class BowlingScoring {
     }
 
     private Frame constructLinkedFrames(List<Integer> scores) {
-        Frame pointerOfFrame = new Frame();
+        Frame pointerOfFrame = new Frame(0);
         Frame head = pointerOfFrame;
+        int frameNumber = 1;
         for (Iterator<Integer> it = scores.iterator(); it.hasNext(); ) {
             Integer score = it.next();
-            Frame frame = new Frame(score);
+            Frame frame = new Frame(frameNumber++, score);
 
             if (score != STRIKE_SCORE && it.hasNext()) {
                 frame.setSecondRoll(it.next());

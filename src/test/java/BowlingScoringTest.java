@@ -36,4 +36,12 @@ public class BowlingScoringTest {
 
         assertThat(finalScore, is(18));
     }
+
+    @Test
+    public void should_score_300_pins_when_all_10_frames_are_strike() throws Exception {
+
+        int finalScore = bowlingScoring.calculate("10 10 10 10 10 10 10 10 10 10 10 10");
+
+        assertThat(finalScore, is(300));
+    }
 }
