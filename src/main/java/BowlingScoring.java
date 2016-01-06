@@ -16,8 +16,8 @@ public class BowlingScoring {
     }
 
     private Frame constructLinkedFrames(List<Integer> scores) {
-        Frame head = new Frame();
-        Frame h = head;
+        Frame pointerOfFrame = new Frame();
+        Frame head = pointerOfFrame;
         for (Iterator<Integer> it = scores.iterator(); it.hasNext(); ) {
             Integer score = it.next();
             Frame frame = new Frame(score);
@@ -26,9 +26,9 @@ public class BowlingScoring {
                 frame.setSecondRoll(it.next());
             }
 
-            head.next(frame);
-            head = frame;
+            pointerOfFrame.next(frame);
+            pointerOfFrame = frame;
         }
-        return h;
+        return head;
     }
 }
