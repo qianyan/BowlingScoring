@@ -25,14 +25,21 @@ public class Frame {
             return firstRoll + secondRoll;
         }
 
-        if(isSpare()) {
+        if (isSpare()) {
             return firstRoll + secondRoll + next.firstRoll + next.finalScore();
+        }
+
+        if (isStrike()) {
+            return firstRoll + secondRoll + next.firstRoll + next.secondRoll + next.finalScore();
         }
         return firstRoll + secondRoll + next.finalScore();
     }
 
+    private boolean isStrike() {
+        return firstRoll == 10;
+    }
 
     private boolean isSpare() {
-        return firstRoll != 10 && firstRoll + secondRoll == 10;
+        return !isStrike() && firstRoll + secondRoll == 10;
     }
 }

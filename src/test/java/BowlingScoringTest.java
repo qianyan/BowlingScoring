@@ -29,5 +29,11 @@ public class BowlingScoringTest {
         assertThat(finalScore, is(29));
     }
 
+    @Test
+    public void should_plus_the_next_two_ball_roll_when_there_has_the_strike() throws Exception {
 
+        int finalScore = bowlingScoring.calculate("1 1 1 1 10 1 1");
+
+        assertThat(finalScore, is(18));
+    }
 }

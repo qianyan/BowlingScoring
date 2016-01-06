@@ -17,8 +17,10 @@ public class BowlingScoring {
         Frame head = new Frame();
         Frame h = head;
         for (Iterator<Integer> it = scores.iterator(); it.hasNext(); ) {
-            Frame frame = new Frame(it.next());
-            if (it.hasNext()) {
+            Integer next = it.next();
+            Frame frame = new Frame(next);
+
+            if (next != 10 && it.hasNext()) {
                 frame.setSecondRoll(it.next());
             }
 
