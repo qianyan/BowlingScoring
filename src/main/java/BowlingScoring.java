@@ -1,5 +1,3 @@
-import exception.InvalidScoreSequenceException;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -26,7 +24,7 @@ public class BowlingScoring {
             Frame frame = new Frame(frameNumber++, score);
 
             if (score != STRIKE_SCORE && it.hasNext()) {
-                frame.setSecondRoll(guard(it.next()));
+                frame.setSecondRoll(it.next());
             }
 
             pointer.next(frame);
@@ -35,10 +33,4 @@ public class BowlingScoring {
         return head;
     }
 
-    private Integer guard(Integer next) {
-        if (next >= STRIKE_SCORE) {
-            throw new InvalidScoreSequenceException();
-        }
-        return next;
-    }
 }

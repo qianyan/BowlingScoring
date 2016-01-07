@@ -56,6 +56,7 @@ public class BowlingScoringTest {
 
     @Test(expected = InvalidScoreSequenceException.class)
     public void should_validate_input_score_sequence() throws Exception {
-        bowlingScoring.calculate("1 10 2 3");
+
+        bowlingScoring.calculate("3 8 1 2");
     }
 }

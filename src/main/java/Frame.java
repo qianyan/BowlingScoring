@@ -1,3 +1,5 @@
+import exception.InvalidScoreSequenceException;
+
 public class Frame {
     private static final int STRIKE_SCORE = 10;
     private static final int TEN_FRAMES = 10;
@@ -16,7 +18,15 @@ public class Frame {
         this.secondRoll = 0;
     }
 
+    private Integer guard(Integer scoreOfFrame) {
+        if (scoreOfFrame > STRIKE_SCORE) {
+            throw new InvalidScoreSequenceException();
+        }
+        return scoreOfFrame;
+    }
+
     public void setSecondRoll(Integer secondRoll) {
+        guard(firstRoll + secondRoll);
         this.secondRoll = secondRoll;
     }
 
