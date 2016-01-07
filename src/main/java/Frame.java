@@ -64,7 +64,7 @@ public class Frame {
         return next.next.firstRoll;
     }
 
-    private boolean isStrike() {
+    public boolean isStrike() {
         return firstRoll == STRIKE_SCORE;
     }
 
