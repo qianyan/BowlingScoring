@@ -1,3 +1,5 @@
+import exception.InvalidScoreSequenceException;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,20 +18,27 @@ public class BowlingScoring {
     }
 
     private Frame constructLinkedFrames(List<Integer> scores) {
-        Frame pointerOfFrame = new Frame(0);
-        Frame head = pointerOfFrame;
+        Frame pointer = new Frame(0);
+        Frame head = pointer;
         int frameNumber = 1;
         for (Iterator<Integer> it = scores.iterator(); it.hasNext(); ) {
             Integer score = it.next();
             Frame frame = new Frame(frameNumber++, score);
 
             if (score != STRIKE_SCORE && it.hasNext()) {
-                frame.setSecondRoll(it.next());
+                frame.setSecondRoll(guard(it.next()));
             }
 
-            pointerOfFrame.next(frame);
-            pointerOfFrame = frame;
+            pointer.next(frame);
+            pointer = frame;
         }
         return head;
+    }
+
+    private Integer guard(Integer next) {
+        if (next >= STRIKE_SCORE) {
+            throw new InvalidScoreSequenceException();
+        }
+        return next;
     }
 }

@@ -1,3 +1,4 @@
+import exception.InvalidScoreSequenceException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -51,5 +52,10 @@ public class BowlingScoringTest {
         int finalScore = bowlingScoring.calculate("10 10 10 10 10 10 10 10 10 9 1 10");
 
         assertThat(finalScore, is(279));
+    }
+
+    @Test(expected = InvalidScoreSequenceException.class)
+    public void should_validate_input_score_sequence() throws Exception {
+        bowlingScoring.calculate("1 10 2 3");
     }
 }
