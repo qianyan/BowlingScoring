@@ -2,7 +2,7 @@ import exception.InvalidScoreSequenceException;
 
 public class Frame {
     private static final int STRIKE_SCORE = 10;
-    private static final int TEN_FRAMES = 10;
+    private static final int TOTAL_FRAMES = 10;
     private final int number;
     private final Integer firstRoll;
     private Integer secondRoll;
@@ -37,7 +37,7 @@ public class Frame {
     public int finalScore() {
         final int basicScore = firstRoll + secondRoll;
 
-        if (number > TEN_FRAMES) {
+        if (number > TOTAL_FRAMES) {
             return 0;
         }
 
